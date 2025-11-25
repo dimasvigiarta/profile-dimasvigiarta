@@ -72,10 +72,10 @@ const AboutSection = () => {
             </span>
           </h2>
           <p className="text-base lg:text-lg">
-            I was shaped by a discipline that wasn&apost always visible, forged
-            by a long journey that taught me perseverance, and strengthened by
-            every small step that slowly showed me that any peak can be reached
-            as long as the rhythm and determination are maintained.
+            I was shaped by a discipline that wasnt always visible, forged by a
+            long journey that taught me perseverance, and strengthened by every
+            small step that slowly showed me that any peak can be reached as
+            long as the rhythm and determination are maintained.
           </p>
           <div className="flex flex-row justify-start mt-8">
             <TabButton
