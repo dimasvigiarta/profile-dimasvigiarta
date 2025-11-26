@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectTag from "./ProjectTag";
 import { motion, useInView } from "framer-motion";
@@ -62,65 +62,93 @@ const projectsData = [
 ];
 
 const ProjectsSection = () => {
-  const [tag, setTag] = useState("All");
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const [isVisible, setIsVisible] = useState(false);
 
-  const handleTagChange = (newTag) => {
-    setTag(newTag);
-  };
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-  const filteredProjects = projectsData.filter((project) =>
-    project.tag.includes(tag)
-  );
+    const section = document.getElementById("projects");
+    if (section) observer.observe(section);
 
-  const cardVariants = {
-    initial: { y: 50, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
-  };
+    return () => {
+      if (section) observer.unobserve(section);
+    };
+  }, []);
 
   return (
-    <section id="projects">
-      <h2 className="text-center text-4xl font-bold text-[#FF2A2A] mt-4 mb-8 md:mb-12">
+    <section id="projects" className="pt-24">
+      <style jsx>{`
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        .animate-scaleIn {
+          animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        .delay-0 {
+          animation-delay: 0s;
+        }
+        .delay-100 {
+          animation-delay: 0.1s;
+        }
+        .delay-200 {
+          animation-delay: 0.2s;
+        }
+        .delay-300 {
+          animation-delay: 0.3s;
+        }
+        .delay-400 {
+          animation-delay: 0.4s;
+        }
+        .delay-500 {
+          animation-delay: 0.5s;
+        }
+      `}</style>
+
+      <h2
+        className={`text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12 ${
+          isVisible ? "animate-scaleIn opacity-0" : "opacity-0"
+        }`}
+      >
         My Projects
       </h2>
-      <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
-        <ProjectTag
-          onClick={handleTagChange}
-          name="All"
-          isSelected={tag === "All"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Web"
-          isSelected={tag === "Web"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Design"
-          isSelected={tag === "Design"}
-        />
-      </div>
-      <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
-        {filteredProjects.map((project, index) => (
-          <motion.li
+      <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+        {projectsData.map((project, index) => (
+          <div
             key={index}
-            variants={cardVariants}
-            initial="initial"
-            animate={isInView ? "animate" : "initial"}
-            transition={{ duration: 0.3, delay: index * 0.4 }}
+            className={`${
+              isVisible
+                ? `animate-scaleIn delay-${index * 100} opacity-0`
+                : "opacity-0"
+            }`}
           >
             <ProjectCard
-              key={project.id}
               title={project.title}
               description={project.description}
               imgUrl={project.image}
               gitUrl={project.gitUrl}
               previewUrl={project.previewUrl}
             />
-          </motion.li>
+          </div>
         ))}
-      </ul>
+      </div>
     </section>
   );
 };
