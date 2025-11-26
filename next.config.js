@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // BARIS INI WAJIB DITAMBAHKAN UNTUK STATIC EXPORT
   output: "export",
+  images: {
+    unoptimized: true, // Ini yang penting!
+  },
 };
 
 module.exports = nextConfig;

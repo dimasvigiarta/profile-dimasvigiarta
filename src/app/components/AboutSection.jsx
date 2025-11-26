@@ -8,17 +8,65 @@ const TAB_DATA = [
     title: "Skills",
     id: "skills",
     content: (
-      <ul className="list-disc pl-2">
-        <li>Sketchup</li>
-        <li>Figma</li>
-        <li>Canva</li>
-        <li>Laravel</li>
-        <li>Mysql</li>
-        <li>Wordpress</li>
-        <li>Boostrap</li>
-        <li>Tailwind CSS</li>
-        <li>Git-Hub</li>
-      </ul>
+      <div className="space-y-6">
+        {/* Design & 3D Modeling */}
+        <div>
+          <h3 className="text-xl font-semibold text-white mb-3">
+            Design & 3D Modeling
+          </h3>
+          <ul className="list-disc pl-6 space-y-1 text-[#ADB7BE]">
+            <li>SketchUp</li>
+            <li>Figma</li>
+            <li>Canva</li>
+          </ul>
+        </div>
+
+        {/* Frontend Development */}
+        <div>
+          <h3 className="text-xl font-semibold text-white mb-3">
+            Frontend Development
+          </h3>
+          <ul className="list-disc pl-6 space-y-1 text-[#ADB7BE]">
+            <li>HTML & CSS</li>
+            <li>JavaScript</li>
+            <li>React.js & Next.js</li>
+            <li>Bootstrap</li>
+            <li>Tailwind CSS</li>
+          </ul>
+        </div>
+
+        {/* Backend Development */}
+        <div>
+          <h3 className="text-xl font-semibold text-white mb-3">
+            Backend Development
+          </h3>
+          <ul className="list-disc pl-6 space-y-1 text-[#ADB7BE]">
+            <li>PHP</li>
+            <li>Laravel</li>
+            <li>Node.js</li>
+          </ul>
+        </div>
+
+        {/* Database */}
+        <div>
+          <h3 className="text-xl font-semibold text-white mb-3">Database</h3>
+          <ul className="list-disc pl-6 space-y-1 text-[#ADB7BE]">
+            <li>MySQL</li>
+          </ul>
+        </div>
+
+        {/* Tools & Others */}
+        <div>
+          <h3 className="text-xl font-semibold text-white mb-3">
+            Tools & Others
+          </h3>
+          <ul className="list-disc pl-6 space-y-1 text-[#ADB7BE]">
+            <li>Git & GitHub</li>
+            <li>WordPress</li>
+            <li>VS Code</li>
+          </ul>
+        </div>
+      </div>
     ),
   },
   {
@@ -38,13 +86,14 @@ const TAB_DATA = [
         <li>Certification Scheme Of Associate Data Scientist BNSP</li>
         <li>Young Building Enginering Expert BNSP</li>
         <li>general occupational safety health expert BNSP</li>
-        <li>Pendamping Proses Produk halal</li>
+        <li>Halal Product Process Companion</li>
         <li>
-          Juara 3 Kelas 71-75Kg Bandung Lautan api Championship V Nasional Open
-          2023
+          3rd Place in the 71-75Kg Class (Adult) Bandung Lautan Api Championship
+          V National Open 2023
         </li>
         <li>
-          Juara 3 Kelas 65-70Kg IPSI Malang Championship 4 Nasional Open 2024
+          3rd Place in the 65-70Kg Class (Adult) IPSI Malang Championship 4
+          National Open 2024
         </li>
       </ul>
     ),

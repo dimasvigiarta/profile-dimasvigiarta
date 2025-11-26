@@ -29,6 +29,7 @@ const HeroSection = () => {
                 "Full Stack Web Developer",
                 1000,
                 "3D Modeler (SketchUp)",
+                1000,
               ]}
               wrapper="span"
               speed={50}
