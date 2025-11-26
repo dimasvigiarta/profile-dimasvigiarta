@@ -1,14 +1,15 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectTag from "./ProjectTag";
 import { motion, useInView } from "framer-motion";
 
+// DATA PROJECT KAMU (Path gambar sudah saya samakan dengan punyamu)
 const projectsData = [
   {
     id: 1,
-    title: "Portfolio Website Next JS",
-    description: "Website profile Dimas Indra Vigiarta",
+    title: "Website Profile",
+    description: "Website profile Dimas Indra Vigiarta Berbasis Next JS",
     image: "/images/projects/portofoliodimas.png",
     tag: ["All", "Web"],
     gitUrl: "/",
@@ -35,7 +36,7 @@ const projectsData = [
   {
     id: 4,
     title: "Cafee-ku",
-    description: "Website Sistem management Cafee Berbasi Laravel",
+    description: "Website Sistem management Cafee Berbasis Laravel",
     image: "/images/projects/cafeeku.png",
     tag: ["All", "Web"],
     gitUrl: "/",
@@ -43,8 +44,8 @@ const projectsData = [
   },
   {
     id: 5,
-    title: "Design",
-    description: "Rumah 1 Lantai 15x25m",
+    title: "Design Rumah 1 Lantai",
+    description: "Desain Rumah 1 Lantai 15x25m (SketchUp)",
     image: "/images/projects/rumah1.png",
     tag: ["All", "Design"],
     gitUrl: "/",
@@ -52,8 +53,8 @@ const projectsData = [
   },
   {
     id: 6,
-    title: "Design",
-    description: "Interior Ruang Tamu",
+    title: "Interior Design",
+    description: "Desain Interior Ruang Tamu Modern",
     image: "/images/projects/interior.png",
     tag: ["All", "Design"],
     gitUrl: "/",
@@ -62,92 +63,84 @@ const projectsData = [
 ];
 
 const ProjectsSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  // State untuk menyimpan tag yang sedang aktif (Default: All)
+  const [tag, setTag] = useState("All");
+  const ref = useRef(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+  // Animasi saat di-scroll
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-    const section = document.getElementById("projects");
-    if (section) observer.observe(section);
+  // Fungsi ganti tag saat tombol diklik
+  const handleTagChange = (newTag) => {
+    setTag(newTag);
+  };
 
-    return () => {
-      if (section) observer.unobserve(section);
-    };
-  }, []);
+  // Filter data berdasarkan tag
+  const filteredProjects = projectsData.filter((project) =>
+    project.tag.includes(tag)
+  );
+
+  // Konfigurasi animasi kartu
+  const cardVariants = {
+    initial: { y: 50, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+  };
 
   return (
-    <section id="projects" className="pt-24">
-      <style jsx>{`
-        @keyframes scaleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.9);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
+    <section id="projects" className="pt-24 pb-12">
+      <div className="container mx-auto px-4 sm:px-12">
+        {/* JUDUL DENGAN GRADASI MERAH */}
+        <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
+          My{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF0000] to-[#FF8888]">
+            Projects
+          </span>
+        </h2>
 
-        .animate-scaleIn {
-          animation: scaleIn 0.6s ease-out forwards;
-        }
+        {/* TOMBOL FILTER */}
+        <div className="text-white flex flex-row justify-center items-center gap-2 py-6 mb-8">
+          <ProjectTag
+            onClick={handleTagChange}
+            name="All"
+            isSelected={tag === "All"}
+          />
+          <ProjectTag
+            onClick={handleTagChange}
+            name="Web"
+            isSelected={tag === "Web"}
+          />
+          <ProjectTag
+            onClick={handleTagChange}
+            name="Design"
+            isSelected={tag === "Design"}
+          />
+        </div>
 
-        .delay-0 {
-          animation-delay: 0s;
-        }
-        .delay-100 {
-          animation-delay: 0.1s;
-        }
-        .delay-200 {
-          animation-delay: 0.2s;
-        }
-        .delay-300 {
-          animation-delay: 0.3s;
-        }
-        .delay-400 {
-          animation-delay: 0.4s;
-        }
-        .delay-500 {
-          animation-delay: 0.5s;
-        }
-      `}</style>
-
-      <h2
-        className={`text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12 ${
-          isVisible ? "animate-scaleIn opacity-0" : "opacity-0"
-        }`}
-      >
-        My Projects
-      </h2>
-      <div className="grid md:grid-cols-3 gap-8 md:gap-12">
-        {projectsData.map((project, index) => (
-          <div
-            key={index}
-            className={`${
-              isVisible
-                ? `animate-scaleIn delay-${index * 100} opacity-0`
-                : "opacity-0"
-            }`}
-          >
-            <ProjectCard
-              title={project.title}
-              description={project.description}
-              imgUrl={project.image}
-              gitUrl={project.gitUrl}
-              previewUrl={project.previewUrl}
-            />
-          </div>
-        ))}
+        {/* GRID PROJECT */}
+        <ul
+          ref={ref}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12"
+        >
+          {filteredProjects.map((project, index) => (
+            <motion.li
+              key={index}
+              variants={cardVariants}
+              initial="initial"
+              animate={isInView ? "animate" : "initial"}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+              layout // Properti layout membuat transisi posisi otomatis saat filter berubah
+            >
+              <ProjectCard
+                key={project.id}
+                title={project.title}
+                description={project.description}
+                imgUrl={project.image}
+                gitUrl={project.gitUrl}
+                previewUrl={project.previewUrl}
+              />
+            </motion.li>
+          ))}
+        </ul>
       </div>
     </section>
   );
