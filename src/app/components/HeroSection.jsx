@@ -53,7 +53,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <span className="text-transparent bg-clip-text bg-white">
-              Hello, I'm{" "}
+              Hello, Im{" "}
             </span>
             <br />
             <TypeAnimation

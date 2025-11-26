@@ -232,7 +232,7 @@ const AboutSection = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            I was shaped by a discipline that wasn't always visible, forged by a
+            I was shaped by a discipline that wasnt always visible, forged by a
             long journey that taught me perseverance, and strengthened by every
             small step that slowly showed me that any peak can be reached as
             long as the rhythm and determination are maintained.
