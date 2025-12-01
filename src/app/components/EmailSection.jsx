@@ -18,23 +18,16 @@ const EmailSection = () => {
     const JSONdata = JSON.stringify(data);
     const endpoint = "/api/send";
 
-    // Form the request for sending data to the server.
     const options = {
-      // The method is POST because we are sending data.
       method: "POST",
-      // Tell the server we're sending JSON.
       headers: {
         "Content-Type": "application/json",
       },
-      // Body of the request is the JSON data we created above.
       body: JSONdata,
     };
 
     const response = await fetch(endpoint, options);
-    const resData = await response.json();
-
     if (response.status === 200) {
-      console.log("Message sent.");
       setEmailSubmitted(true);
     }
   };
@@ -42,56 +35,86 @@ const EmailSection = () => {
   return (
     <section
       id="contact"
-      className="grid md:grid-cols-2 my-12 md:my-12 py-24 gap-4 relative"
+      className="relative grid md:grid-cols-2 my-12 md:my-16 py-24 gap-8 md:gap-12 items-center"
     >
-      <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#8b0000] to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-3/4 -left-4 transform -translate-x-1/2 -translate-1/2"></div>
+      {/* --- BACKGROUND GLOW EFFECT (Senada dengan Hero Section) --- */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-red-600/20 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
 
-      <div className="z-10">
-        <h5 className="text-xl font-bold text-white my-2">
-          Let&apos;s Connect
+      {/* --- KOLOM KIRI: TEKS & SOSIAL MEDIA --- */}
+      <div className="z-10 order-2 md:order-1">
+        <h5 className="text-xl font-bold text-white mb-4">
+          Let&apos;s Connect <span className="text-red-500">.</span>
         </h5>
-        <p className="text-[#ADB7BE] mb-4 max-w-md">
-          {" "}
-          I&apos;m currently looking for new opportunities, my inbox is always
-          open. Whether you have a question or just want to say hi, I&apos;ll
-          try my best to get back to you!
+        <p className="text-[#ADB7BE] mb-8 max-w-md leading-relaxed">
+          Saya saat ini sedang mencari peluang baru. Inbox saya selalu terbuka.
+          Baik Anda memiliki pertanyaan atau hanya ingin menyapa, saya akan
+          berusaha sebaik mungkin untuk membalasnya!
         </p>
-        <div className="socials flex flex-row gap-2">
-          <Link href="github.com">
-            <Image src={GithubIcon} alt="Github Icon" />
-          </Link>
-          <Link href="linkedin.com">
-            <Image src={LinkedinIcon} alt="Linkedin Icon" />
-          </Link>
+
+        <div className="flex flex-col gap-4">
+          <h6 className="text-white font-semibold text-sm uppercase tracking-wider">
+            Socials
+          </h6>
+          <div className="socials flex flex-row gap-4">
+            <Link
+              href="github.com"
+              className="hover:opacity-80 transition-opacity"
+            >
+              <Image
+                src={GithubIcon}
+                alt="Github Icon"
+                width={40}
+                height={40}
+              />
+            </Link>
+            <Link
+              href="linkedin.com"
+              className="hover:opacity-80 transition-opacity"
+            >
+              <Image
+                src={LinkedinIcon}
+                alt="Linkedin Icon"
+                width={40}
+                height={40}
+              />
+            </Link>
+          </div>
         </div>
       </div>
-      <div>
+
+      {/* --- KOLOM KANAN: FORM (Tanpa Border Kotak Tebal) --- */}
+      <div className="z-10 order-1 md:order-2">
         {emailSubmitted ? (
-          <p className="text-green-500 text-sm mt-2">
-            Email sent successfully!
-          </p>
+          <div className="bg-[#18191E] border border-green-500/50 p-6 rounded-2xl text-center animate-fadeIn">
+            <p className="text-green-400 text-lg font-medium">
+              Email sent successfully!
+            </p>
+          </div>
         ) : (
-          <form className="flex flex-col" onSubmit={handleSubmit}>
-            <div className="mb-6">
+          <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
+            {/* Input Email */}
+            <div>
               <label
                 htmlFor="email"
-                className="text-white block mb-2 text-sm font-medium"
+                className="text-white block mb-2 text-sm font-medium pl-1"
               >
-                Your email
+                Your Email
               </label>
               <input
                 name="email"
                 type="email"
                 id="email"
                 required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-xl block w-full p-4 focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all duration-300"
                 placeholder="jacob@google.com"
               />
             </div>
-            <div className="mb-6">
+
+            {/* Input Subject */}
+            <div>
               <label
                 htmlFor="subject"
-                className="text-white block text-sm mb-2 font-medium"
+                className="text-white block mb-2 text-sm font-medium pl-1"
               >
                 Subject
               </label>
@@ -100,27 +123,31 @@ const EmailSection = () => {
                 type="text"
                 id="subject"
                 required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-xl block w-full p-4 focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all duration-300"
                 placeholder="Just saying hi"
               />
             </div>
-            <div className="mb-6">
+
+            {/* Textarea Message */}
+            <div>
               <label
                 htmlFor="message"
-                className="text-white block text-sm mb-2 font-medium"
+                className="text-white block mb-2 text-sm font-medium pl-1"
               >
                 Message
               </label>
               <textarea
                 name="message"
                 id="message"
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-xl block w-full p-4 min-h-[150px] focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all duration-300 resize-y"
                 placeholder="Let's talk about..."
               />
             </div>
+
+            {/* Submit Button */}
             <button
               type="submit"
-              className="bg-[#ac0000] hover:bg-[#b1003e] text-white font-medium py-2.5 px-5 rounded-lg w-full"
+              className="bg-red-600 hover:bg-red-700 text-white font-semibold py-4 px-5 rounded-xl w-full transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-red-900/20"
             >
               Send Message
             </button>

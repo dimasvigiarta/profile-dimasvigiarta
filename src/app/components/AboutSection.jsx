@@ -94,9 +94,6 @@ const TAB_DATA = [
             <span className="px-3 py-1 bg-[#2a2a2a] text-[#ADB7BE] rounded-full text-sm hover:bg-[#ac0000] hover:text-white transition-all cursor-pointer">
               Node.js
             </span>
-            <span className="px-3 py-1 bg-[#2a2a2a] text-[#ADB7BE] rounded-full text-sm hover:bg-[#ac0000] hover:text-white transition-all cursor-pointer">
-              REST API
-            </span>
           </div>
         </motion.div>
 
