@@ -37,7 +37,7 @@ const projectsData = [
     id: 4,
     title: "Cafee-ku",
     description: "Website Sistem management Cafee Berbasis Laravel",
-    image: "/images/projects/Cafe-ku.png",
+    image: "/images/projects/cafe-ku.png",
     tag: ["All", "Web"],
     gitUrl: "/",
     previewUrl: "/",
