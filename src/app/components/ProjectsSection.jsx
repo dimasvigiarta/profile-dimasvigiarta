@@ -44,6 +44,16 @@ const projectsData = [
   },
   {
     id: 5,
+    title: "Transy",
+    description:
+      "Website Sistem Booking dan Management Penyewaan Bus Pariwisata - Laravel",
+    image: "/images/projects/transy1.png",
+    tag: ["All", "Web"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 11,
     title: "Design Rumah",
     description: "Desain Rumah 1 Lantai 15x25m (SketchUp)",
     image: "/images/projects/rumah1.png",
@@ -52,7 +62,7 @@ const projectsData = [
     previewUrl: "/",
   },
   {
-    id: 6,
+    id: 12,
     title: "Interior Design",
     description: "Desain Interior Ruang Tamu Modern",
     image: "/images/projects/interior.png",
