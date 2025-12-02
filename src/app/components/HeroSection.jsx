@@ -9,48 +9,80 @@ const HeroSection = () => {
   return (
     <section className="relative w-full min-h-screen flex items-center bg-[#121212] overflow-hidden pt-20 md:pt-0">
       <style jsx>{`
-        /* Animasi Melayang (Float) */
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px);
+        /* 1. Keyframes untuk memutar border */
+        @keyframes border-spin {
+          from {
+            transform: rotate(0deg);
           }
-          50% {
-            transform: translateY(-15px);
+          to {
+            transform: rotate(360deg);
           }
-        }
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
         }
 
-        /* Animasi Glow Neon (Rapat ke garis, tidak melebar kotak) */
-        @keyframes glow {
-          0%,
-          100% {
-            box-shadow: 0 0 5px rgba(220, 38, 38, 0.2);
-            border-color: rgba(153, 27, 27, 0.4);
-          }
-          50% {
-            /* Glow solid tapi pendek (15px) biar tajam */
-            box-shadow: 0 0 15px rgba(220, 38, 38, 0.9),
-              0 0 5px rgba(255, 255, 255, 0.1) inset;
-            border-color: rgba(239, 68, 68, 1);
-          }
+        /* 2. STYLE UNTUK WRAPPER BORDER (Lapisan luar) */
+        .animated-border-wrapper {
+          position: relative;
+          z-index: 10;
+
+          /* Lebar Border yang terlihat = 4px (padding) */
+          padding: 4px;
+          overflow: hidden;
+
+          /* Background Merah Solid untuk Border */
+          background: #ff0000;
+
+          /* Shadow tipis untuk mempertegas border */
+          box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
         }
-        .animate-glow {
-          animation: glow 2s ease-in-out infinite;
+
+        /* 3. Pseudo-element untuk Cahaya Putih yang Berputar */
+        .animated-border-wrapper::before {
+          content: "";
+          position: absolute;
+          /* Ukuran sangat besar untuk mencakup seluruh area rotasi */
+          top: -200%;
+          left: -200%;
+          right: -200%;
+          bottom: -200%;
+
+          /* Membuat gradient kerucut untuk efek sweeping memutar (PUTIH MENYALA) */
+          background: conic-gradient(
+            from 0deg,
+            transparent 0%,
+            rgba(255, 255, 255, 1) 2%,
+            /* Titik Cahaya Putih Paling Terang */ rgba(255, 255, 255, 0.8) 10%,
+            transparent 30%,
+            transparent 100%
+          );
+
+          /* Menerapkan Animasi Putar */
+          animation: border-spin 3s linear infinite;
+          z-index: 11;
+          border-radius: inherit;
+        }
+
+        /* 4. STYLE UNTUK ISI GAMBAR (Lapisan dalam) */
+        .image-content {
+          /* Ini adalah masker yang menutupi tengah border */
+          background-color: #121212;
+          position: relative;
+          z-index: 12;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
         }
       `}</style>
 
-      {/* Container Utama */}
+      {/* Container Utama (TIDAK BERUBAH) */}
       <div className="container mx-auto px-4 sm:px-12 flex flex-col-reverse md:flex-row items-center justify-center md:gap-8">
-        {/* --- KOLOM TEKS --- */}
+        {/* --- KOLOM TEKS (TIDAK BERUBAH) --- */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="w-full md:w-8/12 text-center md:text-left mt-8 md:mt-0"
         >
+          {/* Teks dan Tombol Tetap Utuh */}
           <motion.h1
             className="text-white mb-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold"
             initial={{ opacity: 0, y: 20 }}
@@ -112,40 +144,45 @@ const HeroSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* --- KOLOM GAMBAR --- */}
+        {/* --- KOLOM GAMBAR (Aplikasi Efek Border Oval Berputar) --- */}
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="w-full md:w-4/12 flex justify-center mt-8 md:mt-0"
         >
-          {/* Wrapper agar shadow tidak terpotong margin */}
           <div className="relative p-4 flex items-center justify-center">
-            {/* CONTAINER FOTO */}
-            {/* 1. bg-gradient... : SUDAH SAYA KEMBALIKAN */}
-            {/* 2. overflow-hidden : Agar gradasi tetap di dalam bingkai */}
-            {/* 3. border-4 : Agar efek neon kelihatan tegas */}
+            {/* 🛑 WRAPPER BORDER ANIMASI (LAPISAN LUAR) */}
             <div
               className="
-              relative 
-              w-[200px] h-[300px] 
-              sm:w-[250px] sm:h-[350px] 
-              lg:w-[350px] lg:h-[500px] 
-              rounded-[40px] md:rounded-full 
-              border-4 border-red-900 
-              animate-float animate-glow 
-              z-10 
-              bg-gradient-to-r from-[#FF2A2A]/40 to-[#0A0A0A]
-              overflow-hidden
-            "
+                w-[200px] h-[300px] sm:w-[250px] sm:h-[380px] lg:w-[350px] lg:h-[480px] 
+                animated-border-wrapper
+              "
+              style={{ borderRadius: "50% / 10%" }} // Bentuk Oval
             >
-              <Image
-                src="/images/dimas1.png"
-                alt="Dimas Indra Vigiarta"
-                fill
-                className="object-cover object-center"
-                priority
-              />
+              {/* ✅ LAPISAN ISI (LAPISAN DALAM) */}
+              <div
+                className="image-content"
+                style={{ borderRadius: "50% / 10%" }} // Bentuk Oval
+              >
+                <div
+                  className="
+                    relative 
+                    w-full h-full 
+                    overflow-hidden 
+                    // Gradasi Background Internal
+                    bg-gradient-to-r from-[#FF2A2A]/40 to-[#0A0A0A] 
+                  "
+                >
+                  <Image
+                    src="/images/dimas1.png"
+                    alt="Dimas Indra Vigiarta"
+                    fill
+                    className="object-cover object-top"
+                    priority
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>

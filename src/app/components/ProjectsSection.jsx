@@ -9,7 +9,7 @@ const projectsData = [
   {
     id: 1,
     title: "Website Profile",
-    description: "Website profile Dimas Indra Vigiarta Berbasis Next JS",
+    description: "Website profile Dimas Indra Vigiarta - Next JS",
     image: "/images/projects/portofoliodimas.png",
     tag: ["All", "Web"],
     gitUrl: "/",
@@ -18,7 +18,7 @@ const projectsData = [
   {
     id: 2,
     title: "Kost-ku",
-    description: "Website Sistem management Kost Berbasis Laravel",
+    description: "Website Sistem management Kost - Laravel",
     image: "/images/projects/Kost-ku.png",
     tag: ["All", "Web"],
     gitUrl: "/",
@@ -27,8 +27,8 @@ const projectsData = [
   {
     id: 3,
     title: "Uang-ku",
-    description: "Sistem Pencacatan uang pribadi Berbasis Laravel",
-    image: "/images/projects/uangku.png",
+    description: "Sistem Pencacatan uang pribadi - Laravel",
+    image: "/images/projects/uangku1.png",
     tag: ["All", "Web"],
     gitUrl: "/",
     previewUrl: "/",
@@ -36,7 +36,7 @@ const projectsData = [
   {
     id: 4,
     title: "Cafee-ku",
-    description: "Website Sistem management Cafee Berbasis Laravel",
+    description: "Website Sistem Management dan Pelayanan Cafee - Laravel",
     image: "/images/projects/cafe-ku.png",
     tag: ["All", "Web"],
     gitUrl: "/",
@@ -44,7 +44,7 @@ const projectsData = [
   },
   {
     id: 5,
-    title: "Design Rumah 1 Lantai",
+    title: "Design Rumah",
     description: "Desain Rumah 1 Lantai 15x25m (SketchUp)",
     image: "/images/projects/rumah1.png",
     tag: ["All", "Design"],
