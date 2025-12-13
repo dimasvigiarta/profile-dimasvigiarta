@@ -54,7 +54,7 @@ const projectsData = [
   },
   {
     id: 11,
-    title: "Design Rumah",
+    title: "Design",
     description: "Desain Rumah 1 Lantai 15x25m (SketchUp)",
     image: "/images/projects/rumah1.png",
     tag: ["All", "Design"],
@@ -63,7 +63,7 @@ const projectsData = [
   },
   {
     id: 12,
-    title: "Interior Design",
+    title: "Interior",
     description: "Desain Interior Ruang Tamu Modern",
     image: "/images/projects/interior.png",
     tag: ["All", "Design"],
