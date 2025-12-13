@@ -181,7 +181,7 @@ const TAB_DATA = [
 
 const AboutSection = () => {
   const [tab, setTab] = useState("skills");
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
