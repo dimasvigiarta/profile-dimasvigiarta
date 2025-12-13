@@ -129,7 +129,7 @@ const HeroSection = () => {
           >
             <Link
               href="/#contact"
-              className="px-6 py-3 w-full sm:w-fit rounded-full bg-gradient-to-br from-[#ff3b3b] to-[#ff1a75] hover:opacity-90 hover:scale-105 transition-all text-white shadow-lg text-center"
+              className="px-6 py-3 w-full sm:w-fit rounded-full bg-gradient-to-br from-[#ff2323] to-[#ff1a1a] hover:opacity-90 hover:scale-105 transition-all text-white shadow-lg text-center"
             >
               Hire Me
             </Link>

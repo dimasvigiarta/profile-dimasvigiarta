@@ -91,9 +91,6 @@ const TAB_DATA = [
             <span className="px-3 py-1 bg-[#2a2a2a] text-[#ADB7BE] rounded-full text-sm hover:bg-[#ac0000] hover:text-white transition-all cursor-pointer">
               Laravel
             </span>
-            <span className="px-3 py-1 bg-[#2a2a2a] text-[#ADB7BE] rounded-full text-sm hover:bg-[#ac0000] hover:text-white transition-all cursor-pointer">
-              Node.js
-            </span>
           </div>
         </motion.div>
 
@@ -212,8 +209,9 @@ const AboutSection = () => {
         </motion.div>
 
         <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
+          {/* JUDUL SECTION: Rata Tengah di Mobile, Rata Kiri di Desktop (lg) */}
           <motion.h2
-            className="text-4xl font-bold text-white mb-4"
+            className="text-4xl font-bold text-white mb-4 text-center lg:text-left"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -223,8 +221,9 @@ const AboutSection = () => {
             </span>
           </motion.h2>
 
+          {/* PARAGRAF: Rata Tengah di Mobile, Rata Kiri di Desktop (lg) */}
           <motion.p
-            className="text-base lg:text-lg"
+            className="text-base lg:text-lg text-center lg:text-left"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -235,8 +234,9 @@ const AboutSection = () => {
             long as the rhythm and determination are maintained.
           </motion.p>
 
+          {/* TOMBOL TAB: Rata Tengah di Mobile, Rata Kiri di Desktop (lg) */}
           <motion.div
-            className="flex flex-row justify-start mt-8"
+            className="flex flex-row justify-center lg:justify-start mt-8"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}

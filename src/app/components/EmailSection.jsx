@@ -46,9 +46,9 @@ const EmailSection = () => {
           Let&apos;s Connect <span className="text-red-500">.</span>
         </h5>
         <p className="text-[#ADB7BE] mb-8 max-w-md leading-relaxed">
-          Saya saat ini sedang mencari peluang baru. Inbox saya selalu terbuka.
-          Baik Anda memiliki pertanyaan atau hanya ingin menyapa, saya akan
-          berusaha sebaik mungkin untuk membalasnya!
+          I'm currently looking for new opportunities. My inbox is always open.
+          Whether you have questions or just want to say hello, I'll do my best
+          to respond!
         </p>
 
         <div className="flex flex-col gap-4">
@@ -106,7 +106,7 @@ const EmailSection = () => {
                 id="email"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-xl block w-full p-4 focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all duration-300"
-                placeholder="jacob@google.com"
+                placeholder="indradimas57@gmail.com.com"
               />
             </div>
 
